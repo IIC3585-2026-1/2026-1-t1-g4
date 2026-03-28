@@ -1,6 +1,6 @@
 # 2026-1-t1-g4: Pokémon CSS Arena 
 
-**Curso:** IIC3585 – Aplicaciones Web  
+**Curso:** IIC3585 – Diseño Avanzado de Aplicaciones Web 
 **Grupo:** 4  
 
 
