@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transiciones Pokemon CSS Arena</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../assets/pokemon.png">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/pages/transitions.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <a class="brand" href="../index.html">
+            <img class="brand-ball" src="../assets/pokemon.png" alt="" aria-hidden="true">
+            <span class="brand-text">Pokemon CSS Arena</span>
+        </a>
+
+        <input id="nav-toggle" class="nav-toggle" type="checkbox" aria-label="Abrir menu de navegacion">
+        <label for="nav-toggle" class="nav-toggle-btn" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <nav class="main-nav" aria-label="Temas del taller">
+            <a href="transforms.html">Transformaciones</a>
+            <a href="transitions.html">Transiciones</a>
+            <a href="animations.html">Animaciones</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <p class="hero-tag">Transiciones - Evolucion</p>
+            <h1>Evolución de Charmander Épica</h1>
+            <p>
+                En esta seccion se muestran las transiciones de la evolución de Charmander 
+                a Charmeleon y luego a Charizard.  
+                Las transiciones se controlan mediante checkboxes escondidos que permiten 
+                alternar entre los estados de evolución. 
+            </p>
+        </section>
+  
+        <section class="evolution-section">
+            
+            <input type="checkbox" id="evolve-1" class="evolution-input">
+            <input type="checkbox" id="evolve-2" class="evolution-input">
+            
+            <div class="evolution-container">
+                
+                <div class="pokemon-evolution stage-1">
+                    <img src="../assets/transitions/charmander.png">
+                    <h3>Charmander</h3>
+                </div>
+                
+                <div class="pokemon-evolution stage-2">
+                    <img src="../assets/transitions/charmeleon.png">
+                    <h3>Charmeleon</h3>
+                </div>
+                
+                <div class="pokemon-evolution stage-3">
+                    <img src="../assets/transitions/charizard.png">
+                    <h3>Charizard</h3>
+                </div>
+            </div>
+            
+            <div class="evolution-buttons">
+                <label for="evolve-1" class="btn-evolve">➤ EVOLUCIONAR ➤</label>
+                <label for="evolve-2" class="btn-evolve">➤ EVOLUCIONAR ➤</label>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Proyecto CSS - Aplicaciones Web - Pokemon CSS Arena</p>
+    </footer>
+
+</body>
+</html>

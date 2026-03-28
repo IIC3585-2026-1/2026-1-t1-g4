@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon CSS Arena</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/pokemon.png">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/loader.css">
+</head>
+
+<body>
+    <div class="loader" aria-hidden="true">
+        <div class="loader-scene">
+            <img class="loader-lightning" src="assets/rayo.png" alt="" aria-hidden="true">
+            <img class="loader-ball" src="assets/pokemon.png" alt="" aria-hidden="true">
+            <h1 class="loader-title">
+                <span class="line line-main">POKÉMON</span>
+                <span class="line line-sub">CSS ARENA</span>
+            </h1>
+            <img class="loader-pikachu" src="assets/stat-pikachu.png" alt="" aria-hidden="true">
+        </div>
+    </div>
+
+    <header class="navbar">
+        <a class="brand" href="index.html">
+            <img class="brand-ball" src="assets/pokemon.png" alt="" aria-hidden="true">
+            <span class="brand-text">Pokemon CSS Arena</span>
+        </a>
+
+        <input id="nav-toggle" class="nav-toggle" type="checkbox" aria-label="Abrir menu de navegacion">
+        <label for="nav-toggle" class="nav-toggle-btn" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <nav class="main-nav" aria-label="Temas del taller">
+            <a href="pages/transforms.html">Transformaciones</a>
+            <a href="pages/transitions.html">Transiciones</a>
+            <a href="pages/animations.html">Animaciones</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <p class="hero-tag">IIC3585 - Grupo 4</p>
+            <h1>Domina el arte del CSS en nuestra Pokédex interactiva</h1>
+            <p>
+                Esta landing presenta nuestro recorrido por CSS.
+                Cada modulo muestra una tecnica distinta aplicada a componentes
+                inspirados en batallas, cartas y evoluciones Pokemon.
+            </p>
+            <div class="hero-actions">
+                <a class="btn btn-secondary" href="#modulos-popup">Explorar Modulos</a>
+            </div>
+        </section>
+    </main>
+
+    <section id="modulos-popup" class="modal-overlay" aria-label="Modulos del proyecto">
+        <div class="modal-card">
+            <a class="modal-close" href="#" aria-label="Cerrar popup">&times;</a>
+            <h2>Modulos del Proyecto</h2>
+
+            <p class="picker-help">Elige un modulo para entrar directo al tema.</p>
+
+            <section class="module-picker" aria-label="Modulos del proyecto">
+
+                <a class="module-option" href="pages/transforms.html">
+                    <span class="module-name">Transformaciones</span>
+                </a>
+
+                <a class="module-option" href="pages/transitions.html">
+                    <span class="module-name">Transiciones</span>
+                </a>
+
+                <a class="module-option" href="pages/animations.html">
+                    <span class="module-name">Animaciones</span>
+                </a>
+            </section>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>Proyecto CSS - Aplicaciones Web - Pokemon CSS Arena</p>
+    </footer>
+
+</body>
+</html>

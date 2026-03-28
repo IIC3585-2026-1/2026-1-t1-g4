@@ -1,0 +1,10 @@
+Tematica (Pokemon)
+
+- Media queries y container queries (todos)
+- Flexbox (ian)
+- Grid (ian)
+- Variables y funciones (calc) (todos)
+- Anidación de reglas (todos)
+- Transformaciones (Moises)
+- Transiciones (Matias)
+- Animaciones (Vicente)

@@ -1,0 +1,10 @@
+.navigation-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+a {
+  padding: 1rem;
+  color: black;
+}

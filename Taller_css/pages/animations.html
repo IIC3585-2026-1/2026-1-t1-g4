@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animations Pokemon CSS Arena</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../assets/pokemon.png">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/pages/animations.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <a class="brand" href="../index.html">
+            <img class="brand-ball" src="../assets/pokemon.png" alt="" aria-hidden="true">
+            <span class="brand-text">Pokemon CSS Arena</span>
+        </a>
+
+        <input id="nav-toggle" class="nav-toggle" type="checkbox" aria-label="Abrir menu de navegacion">
+        <label for="nav-toggle" class="nav-toggle-btn" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <nav class="main-nav" aria-label="Temas del taller">
+            <a href="transforms.html">Transformaciones</a>
+            <a href="transitions.html">Transiciones</a>
+            <a href="animations.html">Animaciones</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <p class="hero-tag">Animaciones - Base de Combate</p>
+            <h1>Simulacion simple de pelea Pokemon</h1>
+            <p>
+                En esta seccion se muestra una animacion de ataque basica.
+                El jugador (Tyranitar) ataca al oponente (Mewtwo) con un movimiento de tipo roca.
+            </p>
+        </section>
+
+        <section class="battle-ui" aria-label="Combate CSS entre Tyranitar y Mewtwo">
+            <input class="battle-state" type="radio" name="battle-state" id="state-idle" checked>
+            <input class="battle-state" type="radio" name="battle-state" id="state-attack">
+
+            <section class="battle-grid" aria-label="Escenario base de pelea Pokemon">
+                <article class="status-card status-opponent" aria-label="Estado de Mewtwo">
+                    <header class="status-head">
+                        <h2>MEWTWO</h2>
+                        <span>Lv 70</span>
+                    </header>
+                    <div class="status-row">
+                        <span class="status-label">HP</span>
+                        <div class="hp-track" aria-hidden="true">
+                            <span class="hp-fill hp-opponent"></span>
+                        </div>
+                    </div>
+                    <!-- <p class="hp-text"><span class="hp-full">100 / 100</span><span class="hp-after">68 / 100</span></p> -->
+                </article>
+
+                <article class="status-card status-player" aria-label="Estado de Tyranitar">
+                    <header class="status-head">
+                        <h2>TYRANITAR</h2>
+                        <span>Lv 68</span>
+                    </header>
+                    <div class="status-row">
+                        <span class="status-label">HP</span>
+                        <div class="hp-track" aria-hidden="true">
+                            <span class="hp-fill" style="width: 100%"></span>
+                        </div>
+                    </div>
+                    <p class="hp-text">100 / 100</p>
+                </article>
+
+                <div class="avalanche-layer" aria-hidden="true">
+                    <span class="rock r1"></span>
+                    <span class="rock r2"></span>
+                    <span class="rock r3"></span>
+                    <span class="rock r4"></span>
+                    <span class="rock r5"></span>
+                    <span class="rock r6"></span>
+                    <span class="rock r7"></span>
+                    <span class="rock r8"></span>
+                </div>
+
+                <figure class="pokemon-slot pokemon-opponent">
+                    <img src="../assets/mewtwo.png" alt="Mewtwo en posicion rival">
+                </figure>
+
+                <figure class="pokemon-slot pokemon-player">
+                    <img src="../assets/tyranitar.png" alt="Tyranitar en posicion del jugador">
+                </figure>
+            </section>
+
+            <section class="battle-console" aria-label="Centro de control del combate">
+                <div class="battle-dialog" role="status" aria-live="polite">
+                    <span class="msg msg-idle">Que deberia hacer Tyranitar?</span>
+                    <span class="msg msg-attack">Tyranitar uso Avalancha!</span>
+                </div>
+
+                <div class="battle-actions">
+                    <div class="action-panel">
+                        <label for="state-attack" class="action-btn btn-fight">FIGHT</label>
+                        <label for="state-idle" class="action-btn btn-bag">BAG</label>
+                        <label for="state-idle" class="action-btn btn-pokemon">POKEMON</label>
+                        <label for="state-idle" class="action-btn btn-run">RUN</label>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Proyecto CSS - Aplicaciones Web - Pokemon CSS Arena</p>
+    </footer>
+
+</body>
+</html>
