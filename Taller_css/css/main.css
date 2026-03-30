@@ -1,19 +1,3 @@
-/* body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background-color: #8282a180;
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-header, footer {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  padding: 1rem;
-} */
-
 main {
     flex: 1;
 }
@@ -136,7 +120,7 @@ a {
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.04);
     backdrop-filter: blur(2px);
-    transition: background var(--speed-fast), border-color var(--speed-fast), color var(--speed-fast), transform var(--speed-fast);
+    transition: all var(--speed-fast);
 }
 
 .main-nav a:hover {
@@ -193,116 +177,6 @@ main {
     line-height: 1.6;
 }
 
-.hero-actions {
-    margin-top: 1.15rem;
-}
-
-.btn {
-    display: inline-block;
-    text-decoration: none;
-    font-weight: 700;
-    border-radius: 999px;
-    border: 1px solid transparent;
-    padding: 0.74rem 1.15rem;
-    transition: transform var(--speed-fast), background var(--speed-fast), color var(--speed-fast), border-color var(--speed-fast);
-}
-
-.btn-secondary {
-    color: #101010;
-    background: var(--color-yellow);
-}
-
-.btn-secondary:hover {
-    transform: translateY(-2px);
-    background: color-mix(in srgb, var(--color-yellow) 85%, white);
-}
-
-.modal-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 30;
-    display: grid;
-    place-items: center;
-    padding: 1rem;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    background: rgba(8, 12, 23, 0.74);
-    backdrop-filter: blur(5px);
-    transition: opacity var(--speed-fast), visibility var(--speed-fast);
-}
-
-.modal-overlay:target {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-}
-
-.modal-card {
-    width: min(92vw, 780px);
-    border: 1px solid rgba(232, 238, 252, 0.25);
-    border-radius: calc(var(--radius) + 2px);
-    padding: 1rem;
-    background: linear-gradient(170deg, #111828, #1a2338);
-}
-
-.modal-close {
-    float: right;
-    width: 2rem;
-    height: 2rem;
-    display: grid;
-    place-items: center;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1.35rem;
-    line-height: 1;
-    border: 1px solid rgba(232, 238, 252, 0.32);
-    border-radius: 50%;
-    padding: 0;
-    background: rgba(255, 255, 255, 0.06);
-}
-
-.modal-card h2 {
-    font-family: var(--font-display);
-    color: var(--color-yellow);
-    font-size: clamp(1.6rem, 4vw, 2.2rem);
-    letter-spacing: 0.03em;
-}
-
-.picker-help {
-    margin-top: 0.35rem;
-    color: color-mix(in srgb, var(--color-ink) 88%, white);
-}
-
-.module-picker {
-    margin-top: 0.9rem;
-    display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 0.65rem;
-}
-
-.module-option {
-    grid-column: span 2;
-    text-decoration: none;
-    text-align: center;
-    font-weight: 700;
-    padding: 0.7rem 0.6rem;
-    border-radius: 12px;
-    border: 1px solid rgba(232, 238, 252, 0.25);
-    background: rgba(255, 255, 255, 0.04);
-    transition: transform var(--speed-fast), background var(--speed-fast), border-color var(--speed-fast);
-}
-
-.module-option:hover {
-    transform: translateY(-2px);
-    border-color: color-mix(in srgb, var(--color-yellow) 70%, white);
-    background: rgba(247, 184, 1, 0.12);
-}
-
-.module-picker .module-option:nth-child(-n+2) {
-    grid-column: span 3;
-}
-
 .footer {
     width: min(100%, var(--layout-max));
     margin: calc(var(--space) * 2) auto var(--space);
@@ -310,30 +184,6 @@ main {
     text-align: center;
     font-size: 0.95rem;
     color: color-mix(in srgb, var(--color-ink) 88%, var(--color-blue));
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .loader {
-        animation: loader-fadeout 0.6s forwards;
-    }
-
-    .loader-ball {
-        animation: none;
-        opacity: 1;
-        transform: translate(calc(-50% - clamp(112px, 14vw, 190px)), -50%) rotate(0deg);
-    }
-
-    .loader-title span {
-        animation: none;
-        opacity: 1;
-        clip-path: inset(0 0 0 0);
-    }
-
-    .loader-pikachu {
-        animation: none;
-        opacity: 1;
-        transform: translate(40%, 10%) scale(1);
-    }
 }
 
 @media (max-width: 920px) {
@@ -378,21 +228,5 @@ main {
 
     .hero {
         margin-top: 0.3rem;
-    }
-
-    .module-picker {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .module-option,
-    .module-picker .module-option:nth-child(-n+2) {
-        grid-column: span 1;
-    }
-}
-
-@media (max-width: 560px) {
-    .btn {
-        width: 100%;
-        text-align: center;
     }
 }

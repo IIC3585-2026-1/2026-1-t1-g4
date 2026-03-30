@@ -1,436 +1,500 @@
-/* Estructura general de la página de animaciones */
 .hero {
-	max-width: 56.25em;
-	margin-bottom: 1.25rem;
+  max-width: 56.25em;
+  margin-bottom: 1.25rem;
 }
 
 .battle-ui {
-	width: min(60em, 92vw);
-	margin: 0 auto 0;
-}
+  width: min(60em, 92vw);
+  margin: 0 auto 0;
 
-.battle-state {
-	position: absolute;
-	opacity: 1;
-	pointer-events: none;
-}
+  .battle-state {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
 
-.battle-grid {
-	width: 100%;
-	min-height: clamp(16.25em, 48vw, 26.25em);
-	margin: 0 auto 1rem;
-	padding: clamp(1rem, 2vw, 1.8rem);
-	border-radius: 1.5em;
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	grid-template-rows: 1fr 1fr;
-	position: relative;
-	overflow: hidden;
-	background-image: url("../../assets/fondo.jpg");
-	background-position: center;
-	background-size: cover;
-	background-repeat: no-repeat;
-}
+  .battle-grid {
+    width: 100%;
+    min-height: clamp(16.25em, 48vw, 26.25em);
+    margin: 0 auto 1rem;
+    padding: clamp(1rem, 2vw, 1.8rem);
+    border-radius: 1.5em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+    background-image: url("../../assets/fondo.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 
-#state-attack:checked ~ .battle-grid {
-	animation: screen-shake 0.4s ease-in-out;
-	animation-delay: 3.1s;
+    .status-card {
+      position: absolute;
+      z-index: 4;
+      width: min(17em, 42vw);
+      padding: 0.6em 0.75em;
+      border-radius: 0.7em;
+      background: #f0f0f0;
+      border: 0.16em solid #2f2f2f;
+      box-shadow: inset 0 0 0 0.12em #b9b9b9;
+
+      &.status-opponent {
+        top: 0.8em;
+        left: 1em;
+      }
+
+      &.status-player {
+        right: 1em;
+        bottom: 0.9em;
+      }
+
+      .status-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.3em;
+        color: #1f1f1f;
+
+        h2 {
+          margin: 0 0 0.3em 0;
+          font-size: 1em;
+        }
+
+        span {
+          font-weight: 700;
+          font-size: 0.9em;
+        }
+      }
+
+      .status-row {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 0.45em;
+        align-items: center;
+        background-color: #353535e8;
+        border-radius: 0.4375em;
+        padding: 0.03em 0.22em;
+      }
+
+      .status-label {
+        font-weight: 700;
+        font-size: 0.86em;
+        color: #ca9400;
+      }
+
+      .hp-track {
+        height: 0.68em;
+        border-radius: 99em;
+        background: #d1d1d1;
+        overflow: hidden;
+
+        .hp-fill {
+          display: block;
+          height: 100%;
+          width: 100%;
+          background: linear-gradient(90deg, #77dc4f, #34a83a);
+
+          &.hp-opponent {
+            animation: none;
+          }
+        }
+      }
+
+      .hp-text {
+        margin: 0.3em 0 0;
+        text-align: right;
+        font-size: 0.76em;
+        font-weight: 700;
+        color: #343434;
+      }
+
+      .hp-after {
+        display: none;
+      }
+    }
+
+    .avalanche-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .rock {
+      position: absolute;
+      --size: 1.5em;
+      width: var(--size);
+      height: var(--size);
+      background-image: url("../../assets/rock.png");
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      --start-top: -7.8em;
+      --end-top: 12.8em;
+      --start-left: 70%;
+      --end-left: 70%;
+      --fall-time: 3s;
+      --rock-delay: 0.12s;
+      top: var(--start-top);
+      left: var(--start-left);
+      opacity: 0;
+
+      &.r1 {
+        --size: 1.05em;
+        --start-left: 66%;
+        --end-left: 64.8%;
+        --fall-time: 2.25s;
+        --rock-delay: 0.18s;
+        filter: blur(0.04em);
+      }
+
+      &.r2 {
+        --size: 1.28em;
+        --start-top: -8.5em;
+        --start-left: 70%;
+        --end-left: 69.1%;
+        --fall-time: 2.55s;
+        --rock-delay: 0.34s;
+      }
+
+      &.r3 {
+        --size: 1.62em;
+        --start-left: 74%;
+        --end-left: 75.1%;
+        --fall-time: 2.45s;
+        --rock-delay: 0.52s;
+      }
+
+      &.r4 {
+        --size: 1.18em;
+        --start-top: -8.9em;
+        --start-left: 77%;
+        --end-left: 75.8%;
+        --fall-time: 2.7s;
+        --rock-delay: 0.72s;
+        filter: blur(0.06em);
+      }
+
+      &.r5 {
+        --size: 1.95em;
+        --start-left: 80%;
+        --end-left: 81.4%;
+        --fall-time: 2.58s;
+        --rock-delay: 0.95s;
+        z-index: 1;
+      }
+
+      &.r6 {
+        --size: 0.96em;
+        --start-top: -7.2em;
+        --start-left: 83%;
+        --end-left: 82.3%;
+        --fall-time: 2.3s;
+        --rock-delay: 1.2s;
+        filter: blur(0.08em);
+      }
+
+      &.r7 {
+        --size: 2.2em;
+        --start-top: -9.2em;
+        --start-left: 72%;
+        --end-left: 73.8%;
+        --fall-time: 2.95s;
+        --rock-delay: 1.45s;
+        z-index: 2;
+      }
+
+      &.r8 {
+        --size: 1.42em;
+        --start-top: -8.1em;
+        --start-left: 76%;
+        --end-left: 74.6%;
+        --fall-time: 2.8s;
+        --rock-delay: 1.7s;
+        filter: blur(0.05em);
+      }
+    }
+
+    .pokemon-slot {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      z-index: 2;
+
+      img {
+        max-width: 13em;
+        height: auto;
+        object-fit: contain;
+      }
+
+      &.pokemon-player {
+        bottom: 0%;
+        left: 15%;
+      }
+
+      &.pokemon-opponent {
+        top: 11%;
+        right: 11%;
+        transform: translateY(0);
+      }
+    }
+  }
+
+  .battle-console {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 65% 35%;
+    gap: 0.7em;
+
+    .battle-dialog {
+      color: #1f1f1f;
+      padding: 0.8em 1em;
+      border-radius: 0.9em;
+      background: #f0f0f0;
+      border: 0.22em solid #2f2f2f;
+      box-shadow: inset 0 0 0 0.18em #acacac;
+      font-size: 1.2em;
+      font-weight: 700;
+      min-height: 3.4em;
+      display: flex;
+      align-items: center;
+
+      .msg {
+        display: none;
+      }
+    }
+
+    .battle-actions {
+      border-radius: 0.9em;
+      background: #f0f0f0;
+      border: 0.22em solid #2f2f2f;
+      box-shadow: inset 0 0 0 0.18em #acacac;
+      padding: 0.4em;
+
+      .action-panel {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        gap: 0.35em;
+
+        .action-btn {
+          border: 0.14em solid #2d2d2d;
+          border-radius: 0.7em;
+          padding: 0.48em 0.3em;
+          font-family: "Bangers", cursive;
+          font-size: 1.32em;
+          letter-spacing: 0.05em;
+          color: #fefefe;
+          text-shadow: 0 0.05em 0 rgba(0, 0, 0, 0.45);
+          cursor: pointer;
+          text-align: center;
+          user-select: none;
+
+          &.btn-fight { background: linear-gradient(180deg, #ff9bb4, #d86688); }
+          &.btn-bag { background: linear-gradient(180deg, #ffd36e, #db9f26); }
+          &.btn-pokemon { background: linear-gradient(180deg, #96e59a, #3fa246); }
+          &.btn-run { background: linear-gradient(180deg, #81c6ff, #2c78c9); }
+        }
+      }
+    }
+  }
+
+  #state-attack:checked ~ .battle-grid {
+    animation: screen-shake 0.4s ease-in-out;
+    animation-delay: 3.1s;
+  }
+
+  #state-attack:checked ~ .battle-grid .rock {
+    animation: rock-fall var(--fall-time) cubic-bezier(0.22, 0.68, 0.38, 0.96) var(--rock-delay) forwards;
+  }
+
+  #state-attack:checked ~ .battle-grid .pokemon-opponent {
+    animation: target-hit 1.2s cubic-bezier(.36, .07, .19, .97) 2;
+    animation-delay: 1s;
+  }
+
+  #state-attack:checked ~ .battle-grid .status-opponent .hp-opponent {
+    animation: hp-drain 1.15s ease 3.65s forwards;
+  }
+
+  #state-attack:checked ~ .battle-grid .status-opponent .hp-full {
+    display: none;
+  }
+
+  #state-attack:checked ~ .battle-grid .status-opponent .hp-after {
+    display: inline;
+  }
+
+  #state-idle:checked ~ .battle-console .msg-idle,
+  #state-attack:checked ~ .battle-console .msg-attack {
+    display: inline;
+  }
 }
 
 @keyframes screen-shake {
-	0%   { transform: translate(0, 0); }
-	10%  { transform: translate(-0.4em, 0.2em); }
-	20%  { transform: translate(0.4em, -0.3em); }
-	30%  { transform: translate(-0.3em, 0.1em); }
-	40%  { transform: translate(0.3em, -0.2em); }
-	50%  { transform: translate(-0.2em, 0.2em); }
-	60%  { transform: translate(0.2em, -0.1em); }
-	70%  { transform: translate(-0.15em, 0.1em); }
-	80%  { transform: translate(0.15em, -0.05em); }
-	90%  { transform: translate(-0.05em, 0.05em); }
-	100% { transform: translate(0, 0); }
-}
-
-
-/* Paneles de estado (HUD de vida y nombre) */
-.status-card {
-	position: absolute;
-	z-index: 4;
-	width: min(17em, 42vw);
-	padding: 0.6em 0.75em;
-	border-radius: 0.7em;
-	background: #f0f0f0;
-	border: 0.16em solid #2f2f2f;
-	box-shadow: inset 0 0 0 0.12em #b9b9b9;
-}
-
-.status-opponent {
-	top: 0.8em;
-	left: 1em;
-}
-
-.status-player {
-	right: 1em;
-	bottom: 0.9em;
-}
-
-.status-head {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-bottom: 0.3em;
-	color: #1f1f1f;
-}
-
-.status-head h2 {
-	margin: 0 0 0.3em 0;
-	font-size: 1em;
-}
-
-.status-head span {
-	font-weight: 700;
-	font-size: 0.9em;
-}
-
-.status-row {
-	display: grid;
-	grid-template-columns: auto 1fr;
-	gap: 0.45em;
-	align-items: center;
-    background-color: #353535e8;
-    border-radius: 7px;
-    padding: 0.5px 3.5px;
-}
-
-.status-label {
-	font-weight: 700;
-	font-size: 0.86em;
-	color: #ca9400;
-}
-
-.hp-track {
-	height: 0.68em;
-	border-radius: 99em;
-	background: #d1d1d1;
-	overflow: hidden;
-}
-
-.hp-fill {
-	display: block;
-	height: 100%;
-	width: 100%;
-	background: linear-gradient(90deg, #77dc4f, #34a83a);
-}
-
-.hp-text {
-	margin: 0.3em 0 0;
-	text-align: right;
-	font-size: 0.76em;
-	font-weight: 700;
-	color: #343434;
-}
-
-
-/* Capa de avalancha y rocas */
-.avalanche-layer {
-	position: absolute;
-	inset: 0;
-	pointer-events: none;
-	z-index: 3;
-}
-
-.rock {
-	position: absolute;
-	--size: 1.5em;
-	width: var(--size);
-	height: var(--size);
-	background-image: url("../../assets/rock.png");
-	background-size: contain;
-	background-position: center;
-	background-repeat: no-repeat;
-	--start-top: -7.8em;
-	--end-top: 12.8em;
-	--start-left: 70%;
-	--end-left: 70%;
-	--fall-time: 3s;
-	--rock-delay: 0.12s;
-	top: var(--start-top);
-	left: var(--start-left);
-	opacity: 0;
-}
-
-.r1 {
-	--size: 1.05em;
-	--start-left: 66%;
-	--end-left: 64.8%;
-	--fall-time: 2.25s;
-	--rock-delay: 0.18s;
-	filter: blur(0.04em);
-}
-
-.r2 {
-	--size: 1.28em;
-	--start-top: -8.5em;
-	--start-left: 70%;
-	--end-left: 69.1%;
-	--fall-time: 2.55s;
-	--rock-delay: 0.34s;
-}
-
-.r3 {
-	--size: 1.62em;
-	--start-left: 74%;
-	--end-left: 75.1%;
-	--fall-time: 2.45s;
-	--rock-delay: 0.52s;
-}
-
-.r4 {
-	--size: 1.18em;
-	--start-top: -8.9em;
-	--start-left: 77%;
-	--end-left: 75.8%;
-	--fall-time: 2.7s;
-	--rock-delay: 0.72s;
-	filter: blur(0.06em);
-}
-
-.r5 {
-	--size: 1.95em;
-	--start-left: 80%;
-	--end-left: 81.4%;
-	--fall-time: 2.58s;
-	--rock-delay: 0.95s;
-	z-index: 1;
-}
-
-.r6 {
-	--size: 0.96em;
-	--start-top: -7.2em;
-	--start-left: 83%;
-	--end-left: 82.3%;
-	--fall-time: 2.3s;
-	--rock-delay: 1.2s;
-	filter: blur(0.08em);
-}
-
-.r7 {
-	--size: 2.2em;
-	--start-top: -9.2em;
-	--start-left: 72%;
-	--end-left: 73.8%;
-	--fall-time: 2.95s;
-	--rock-delay: 1.45s;
-	z-index: 2;
-}
-
-.r8 {
-	--size: 1.42em;
-	--start-top: -8.1em;
-	--start-left: 76%;
-	--end-left: 74.6%;
-	--fall-time: 2.8s;
-	--rock-delay: 1.7s;
-	filter: blur(0.05em);
-}
-
-#state-attack:checked ~ .battle-grid .rock {
-	animation: rock-fall var(--fall-time) cubic-bezier(0.22, 0.68, 0.38, 0.96) var(--rock-delay) forwards;
+  0% { transform: translate(0, 0); }
+  10% { transform: translate(-0.4em, 0.2em); }
+  20% { transform: translate(0.4em, -0.3em); }
+  30% { transform: translate(-0.3em, 0.1em); }
+  40% { transform: translate(0.3em, -0.2em); }
+  50% { transform: translate(-0.2em, 0.2em); }
+  60% { transform: translate(0.2em, -0.1em); }
+  70% { transform: translate(-0.15em, 0.1em); }
+  80% { transform: translate(0.15em, -0.05em); }
+  90% { transform: translate(-0.05em, 0.05em); }
+  100% { transform: translate(0, 0); }
 }
 
 @keyframes rock-fall {
-	0% {
-		opacity: 0;
-		top: var(--start-top);
-		left: var(--start-left);
-	}
-	12% {
-		opacity: 1;
-	}
-	100% {
-		opacity: 0;
-		top: var(--end-top);
-		left: var(--end-left);
-	}
-}
-
-/* Animaciones de ataque y daño */
-.pokemon-slot {
-	margin: 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	position: absolute;
-	z-index: 2;
-}
-
-.pokemon-slot img {
-	max-width: 13em;
-	height: auto;
-	object-fit: contain;
-}
-
-.pokemon-player {
-	bottom: 0%;
-	left: 15%;
-}
-
-.pokemon-opponent {
-	--opponent-right: 11%;
-	top: 11%;
-	right: var(--opponent-right);
-	transform: translateY(0);
-}
-
-#state-attack:checked ~ .battle-grid .pokemon-opponent {
-	animation: target-hit 1.2s cubic-bezier(.36,.07,.19,.97) 2;
-	animation-delay: 1s;
+  0% {
+    opacity: 0;
+    top: var(--start-top);
+    left: var(--start-left);
+  }
+  12% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    top: var(--end-top);
+    left: var(--end-left);
+  }
 }
 
 @keyframes target-hit {
-	0%   { transform: translateY(0); }
-	40%  { transform: translateY(-1em); }
-	50%  { transform: translateY(0); }
-	60%  { transform: translateY(-1em); }
-	100% { transform: translateY(0); }
-}
-
-.hp-opponent {
-	animation: none;
-}
-
-#state-attack:checked ~ .battle-grid .status-opponent .hp-opponent {
-	animation: hp-drain 1.15s ease 3.65s forwards;
+  0% { transform: translateY(0); }
+  40% { transform: translateY(-1em); }
+  50% { transform: translateY(0); }
+  60% { transform: translateY(-1em); }
+  100% { transform: translateY(0); }
 }
 
 @keyframes hp-drain {
-	0% {
-		width: 100%;
-		background: linear-gradient(90deg, #77dc4f, #34a83a);
-	}
-	100% {
-		width: 68%;
-		background: linear-gradient(90deg, #f7cf53, #ce8a19);
-	}
+  0% {
+    width: 100%;
+    background: linear-gradient(90deg, #77dc4f, #34a83a);
+  }
+  100% {
+    width: 68%;
+    background: linear-gradient(90deg, #f7cf53, #ce8a19);
+  }
 }
 
-.hp-after {
-	display: none;
+@media (max-width: 768px) {
+  .battle-ui {
+    .battle-grid {
+      min-height: 20em;
+      border-radius: 1.2em;
+
+      .status-card {
+        width: 35vw;
+        padding: 0.25em 0.55em;
+
+        &.status-opponent {
+          top: 0.5em;
+          left: 0.6em;
+        }
+
+        &.status-player {
+          right: 0.6em;
+          bottom: 0.3em;
+        }
+
+        .status-head {
+          h2 { font-size: 0.88em; }
+          span { font-size: 0.8em; }
+        }
+      }
+
+      .pokemon-slot {
+        img {
+          width: 10em;
+        }
+
+        &.pokemon-player {
+          bottom: 0%;
+          left: 15%;
+        }
+
+        &.pokemon-opponent {
+          top: 5%;
+		  right: 12%;
+        }
+      }
+    }
+
+    .battle-console {
+      grid-template-columns: 1fr;
+      gap: 0.5em;
+
+      .battle-actions {
+        .action-panel {
+          .action-btn {
+            font-size: 1.14em;
+          }
+        }
+      }
+    }
+  }
 }
 
-#state-attack:checked ~ .battle-grid .status-opponent .hp-full {
-	display: none;
-}
+@media (max-width: 480px) {
+  .battle-ui {
+    .battle-grid {
+      min-height: 18em;
+      border-radius: 1.1em;
 
-#state-attack:checked ~ .battle-grid .status-opponent .hp-after {
-	display: inline;
-}
+      .status-card {
+        width: 45vw;
+        padding: 0.15em 0.55em;
 
+        &.status-opponent {
+          top: 0.5em;
+          left: 0.6em;
+        }
 
-/* Consola de control y elementos iniciales */
-.battle-console {
-	width: 100%;
-	display: grid;
-	grid-template-columns: 65% 35%;
-	gap: 0.7em;
-}
+        &.status-player {
+          right: 0.6em;
+          bottom: 0.2em;
+        }
 
-.battle-dialog {
-	color: #1f1f1f;
-	padding: 0.8em 1em;
-	border-radius: 0.9em;
-	background: #f0f0f0;
-	border: 0.22em solid #2f2f2f;
-	box-shadow: inset 0 0 0 0.18em #acacac;
-	font-size: 1.2em;
-	font-weight: 700;
-	min-height: 3.4em;
-	display: flex;
-	align-items: center;
-}
+        .status-head {
+          h2 { font-size: 0.88em; }
+          span { font-size: 0.8em; }
+        }
+      }
 
-.battle-dialog .msg {
-	display: none;
-}
+      .pokemon-slot {
+        img {
+          width: 7.5em;
+        }
 
-#state-idle:checked ~ .battle-console .msg-idle,
-#state-attack:checked ~ .battle-console .msg-attack {
-	display: inline;
-}
+        &.pokemon-player {
+          bottom: 0%;
+          left: 1%;
+        }
 
-.battle-actions {
-	border-radius: 0.9em;
-	background: #f0f0f0;
-	border: 0.22em solid #2f2f2f;
-	box-shadow: inset 0 0 0 0.18em #acacac;
-	padding: 0.4em;
-}
+        &.pokemon-opponent {
+          top: 15%;
+		  right: -2%;
+          transform: translateY(0);
+        }
+      }
+    }
 
-.action-panel {
-	display: grid;
-	grid-template-columns: 50% 50%;
-	gap: 0.35em;
-}
+    .battle-console {
+      grid-template-columns: 1fr;
+      gap: 0.5em;
 
-.action-btn {
-	border: 0.14em solid #2d2d2d;
-	border-radius: 0.7em;
-	padding: 0.48em 0.3em;
-	font-family: "Bangers", cursive;
-	font-size: 1.32em;
-	letter-spacing: 0.05em;
-	color: #fefefe;
-	text-shadow: 0 0.05em 0 rgba(0, 0, 0, 0.45);
-	cursor: pointer;
-	text-align: center;
-	user-select: none;
-}
-
-.btn-fight { background: linear-gradient(180deg, #ff9bb4, #d86688); }
-.btn-bag { background: linear-gradient(180deg, #ffd36e, #db9f26); }
-.btn-pokemon { background: linear-gradient(180deg, #96e59a, #3fa246); }
-.btn-run { background: linear-gradient(180deg, #81c6ff, #2c78c9); }
-
-
-@media (max-width: 43.75em) {
-	.battle-grid {
-		min-height: 18.75em;
-		border-radius: 1.125em;
-	}
-
-	.status-card {
-		width: min(14em, 55vw);
-		padding: 0.45em 0.55em;
-	}
-
-	.status-opponent {
-		top: 0.5em;
-		left: 0.6em;
-	}
-
-	.status-player {
-		right: 0.6em;
-		bottom: 0.55em;
-	}
-
-	.status-head h2 {
-		font-size: 0.88em;
-	}
-
-	.status-head span {
-		font-size: 0.8em;
-	}
-
-	.pokemon-slot img {
-		width: clamp(5em, 24vw, 8.125em);
-	}
-
-	.battle-console {
-		grid-template-columns: 1fr;
-		gap: 0.5em;
-	}
-
-	.action-btn {
-		font-size: 1.14em;
-	}
+      .battle-actions {
+        .action-panel {
+          .action-btn {
+            font-size: 1.14em;
+          }
+        }
+      }
+    }
+  }
 }
