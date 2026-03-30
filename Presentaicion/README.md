@@ -80,6 +80,7 @@ Esto hace que la landing:
 - haga que el titulo crezca o se reduzca segun el tamano de pantalla
 - se vea bien tanto en celular como en escritorio
 
+# CODIGO Y Página
 
 ## Uso de IA
 
